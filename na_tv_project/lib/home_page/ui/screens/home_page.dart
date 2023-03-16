@@ -53,7 +53,6 @@ class _HomePageState extends State<HomePage> {
                 _updateText(newText);
               },
             ),
-
             const SizedBox(
               height: 30,
             ),
@@ -64,16 +63,24 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 10,
             ),
-
-            DataTable_widget(),
-            //  BlocBuilder<ChannelsBloc, ChannelsState>(
-            //   builder: (context, state) {
-            //     if (state is ChannelsSucces) {
-            //       return ;
-            //     }
-
-            //   },
-            // ),
+            BlocBuilder<ChannelsBloc, ChannelsState>(
+              builder: (context, state) {
+                if (state is ChannelsSucces) {
+                  return DataTable_widget(
+                    image: state.model.logo ?? '',
+                    titleOfChannel: state.model.channelName ?? '',
+                    price: state.model.pricePerLetter ?? 0,
+                  );
+                } else {
+                  return const DataTable_widget(
+                    image:
+                        'https://denisjurin.ru/wp-content/uploads/2021/05/HgRLNqN4M4.jpg',
+                    titleOfChannel: 'ntv',
+                    price: 9,
+                  );
+                }
+              },
+            ),
           ],
         ),
       ),
