@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:na_tv_project/home_page/bloc/channels_bloc.dart';
 
 import '../assets/app_fonts.dart';
-import 'data_picker.dart';
 import 'data_picker_range.dart';
 
 class DataTable_widget extends StatelessWidget {
@@ -47,8 +46,13 @@ class DataTable_widget extends StatelessWidget {
             DataCell(
               Row(
                 children: [
-                  Image.network(image),
-                  Text(titleOfChannel),
+                  Column(
+                    children: [
+                      SizedBox(
+                          width: 50, height: 50, child: Image.network(image)),
+                      Text(titleOfChannel),
+                    ],
+                  ),
                 ],
               ),
             ),
