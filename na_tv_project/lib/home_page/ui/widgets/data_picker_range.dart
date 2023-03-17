@@ -9,7 +9,7 @@ class MyDateRangePicker extends StatefulWidget {
 class _MyDateRangePickerState extends State<MyDateRangePicker> {
   DateTime? _startDate;
   DateTime? _endDate;
-  final _dateFormatter = DateFormat('yy-MM-dd'); // format for the date range
+  final _dateFormatter = DateFormat('yy-MM-dd');
 
   Future<void> _selectDateRange(BuildContext context) async {
     final initialDateRange = DateTimeRange(

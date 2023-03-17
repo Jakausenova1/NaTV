@@ -57,7 +57,7 @@ class DataTable_widget extends StatelessWidget {
               ),
             ),
             DataCell(
-              MyDateRangePicker(),
+              DateRangePicker(),
             ),
             DataCell(
               Text('$price'),
