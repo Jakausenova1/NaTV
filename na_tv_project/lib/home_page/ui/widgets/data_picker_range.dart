@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class MyDateRangePicker extends StatefulWidget {
+class DateRangePicker extends StatefulWidget {
   @override
-  _MyDateRangePickerState createState() => _MyDateRangePickerState();
+  _DateRangePickerState createState() => _DateRangePickerState();
 }
 
-class _MyDateRangePickerState extends State<MyDateRangePicker> {
+class _DateRangePickerState extends State<DateRangePicker> {
   DateTime? _startDate;
   DateTime? _endDate;
   final _dateFormatter = DateFormat('yy-MM-dd');

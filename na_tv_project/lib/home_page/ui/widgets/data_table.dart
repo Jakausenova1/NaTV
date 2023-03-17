@@ -44,15 +44,10 @@ class DataTable_widget extends StatelessWidget {
         DataRow(
           cells: [
             DataCell(
-              Row(
+              Column(
                 children: [
-                  Column(
-                    children: [
-                      SizedBox(
-                          width: 50, height: 50, child: Image.network(image)),
-                      Text(titleOfChannel),
-                    ],
-                  ),
+                  SizedBox(width: 50, height: 50, child: Image.network(image)),
+                  Text(titleOfChannel),
                 ],
               ),
             ),
