@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:na_tv_project/home_page/ui/assets/app_fonts.dart';
 
 import '../../bloc/channels_bloc.dart';
-import '../widgets/data_picker.dart';
 import '../widgets/data_table.dart';
 import '../widgets/text_field.dart';
 

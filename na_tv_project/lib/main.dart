@@ -4,6 +4,7 @@ import 'package:na_tv_project/dio_settings/dio_setting.dart';
 import 'package:na_tv_project/home_page/bloc/channels_bloc.dart';
 import 'package:na_tv_project/home_page/repositories/get_channel_repo.dart';
 import 'home_page/ui/screens/home_page.dart';
+import 'home_page/ui/widgets/data_picker_range.dart';
 
 void main() {
   runApp(const MyApp());

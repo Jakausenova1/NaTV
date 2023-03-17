@@ -4,6 +4,7 @@ import 'package:na_tv_project/home_page/bloc/channels_bloc.dart';
 
 import '../assets/app_fonts.dart';
 import 'data_picker.dart';
+import 'data_picker_range.dart';
 
 class DataTable_widget extends StatelessWidget {
   const DataTable_widget({
@@ -52,7 +53,7 @@ class DataTable_widget extends StatelessWidget {
               ),
             ),
             DataCell(
-              MyDatePicker(),
+              MyDateRangePicker(),
             ),
             DataCell(
               Text('$price'),
