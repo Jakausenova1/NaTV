@@ -12,7 +12,9 @@ class GetChannelRepo {
     print(response.data);
     for (var model in response.data) {
       final myModel = ChannelModel.fromJson(model);
-      listChanels.add(myModel);
+      if (myModel.id != 1) {
+        listChanels.add(myModel);
+      }
     }
 
     return listChanels;

@@ -34,16 +34,18 @@ class _DateRangePickerState extends State<DateRangePicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ListTile(
-          title: Text(_startDate == null || _endDate == null
-              ? 'Выберите дату'
-              : 'даты: ${_dateFormatter.format(_startDate!)} - ${_dateFormatter.format(_endDate!)}'),
-          trailing: const Icon(Icons.calendar_today),
-          onTap: () => _selectDateRange(context),
-        ),
-      ],
+    return Expanded(
+      child: Column(
+        children: [
+          ListTile(
+            title: Text(_startDate == null || _endDate == null
+                ? 'Выберите дату'
+                : 'даты: ${_dateFormatter.format(_startDate!)} - ${_dateFormatter.format(_endDate!)}'),
+            trailing: const Icon(Icons.calendar_today),
+            onTap: () => _selectDateRange(context),
+          ),
+        ],
+      ),
     );
   }
 }

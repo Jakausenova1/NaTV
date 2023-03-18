@@ -44,6 +44,7 @@ class DataTable_widget extends StatelessWidget {
             ),
           ),
         ],
+        dataRowHeight: 120,
         rows: list
             .map(
               (e) => DataRow(
@@ -64,7 +65,7 @@ class DataTable_widget extends StatelessWidget {
                     ),
                   ),
                   DataCell(
-                    DateRangePicker(),
+                    SizedBox(width: double.infinity, child: DateRangePicker()),
                   ),
                   DataCell(
                     Text(e.pricePerLetter.toString()),
