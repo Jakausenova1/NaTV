@@ -6,9 +6,15 @@ class GetChannelRepo {
 
   GetChannelRepo({required this.dio});
 
-  Future<ChannelModel> getChannel() async {
+  Future<List<ChannelModel>> getChannel() async {
+    List<ChannelModel> listChanels = [];
     final response = await dio.get('api/v1/channel/list');
+    print(response.data);
+    for (var model in response.data) {
+      final myModel = ChannelModel.fromJson(model);
+      listChanels.add(myModel);
+    }
 
-    return ChannelModel.fromJson(response.data);
+    return listChanels;
   }
 }

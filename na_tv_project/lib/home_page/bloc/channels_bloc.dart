@@ -12,9 +12,10 @@ class ChannelsBloc extends Bloc<ChannelsEvent, ChannelsState> {
       emit(ChannelsLoading());
       try {
         final model = await repo.getChannel();
-        ChannelsSucces(model: model);
+        emit(ChannelsSucces(model: model));
       } catch (e) {
         emit(ChannelsError());
+        print('jjj*************************$e');
       }
     });
   }

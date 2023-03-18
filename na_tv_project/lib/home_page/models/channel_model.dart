@@ -2,7 +2,7 @@ class ChannelModel {
   int? id;
   String? channelName;
   String? logo;
-  int? pricePerLetter;
+  double? pricePerLetter;
   List<Discounts>? discounts;
 
   ChannelModel(

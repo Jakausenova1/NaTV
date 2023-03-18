@@ -66,17 +66,14 @@ class _HomePageState extends State<HomePage> {
               builder: (context, state) {
                 if (state is ChannelsSucces) {
                   return DataTable_widget(
-                    image: state.model.logo ?? '',
-                    titleOfChannel: state.model.channelName ?? '',
-                    price: state.model.pricePerLetter ?? 0,
+                    list: state.model,
+
+                    // image: state.model[index].logo ?? '',
+                    // titleOfChannel: state.model[index].channelName ?? '',
+                    // price: state.model[index].pricePerLetter ?? 0,
                   );
                 } else {
-                  return const DataTable_widget(
-                    image:
-                        'https://denisjurin.ru/wp-content/uploads/2021/05/HgRLNqN4M4.jpg',
-                    titleOfChannel: 'ntv',
-                    price: 9,
-                  );
+                  return Text('data');
                 }
               },
             ),

@@ -8,7 +8,7 @@ class ChannelsInitial extends ChannelsState {}
 class ChannelsLoading extends ChannelsState {}
 
 class ChannelsSucces extends ChannelsState {
-  final ChannelModel model;
+  final List<ChannelModel> model;
 
   ChannelsSucces({required this.model});
 }
