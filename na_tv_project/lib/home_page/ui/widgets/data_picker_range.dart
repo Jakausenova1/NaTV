@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
+import '../../bloc/channels_bloc.dart';
+
 class DateRangePicker extends StatefulWidget {
+  final int id;
+
+  const DateRangePicker({super.key, required this.id});
   @override
   _DateRangePickerState createState() => _DateRangePickerState();
 }
@@ -29,6 +35,9 @@ class _DateRangePickerState extends State<DateRangePicker> {
     setState(() {
       _startDate = newDateRange.start;
       _endDate = newDateRange.end;
+
+      BlocProvider.of<ChannelsBloc>(context)
+          .add(SelectDate(_startDate!, _endDate!, widget.id));
     });
   }
 

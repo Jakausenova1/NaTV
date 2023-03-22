@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TextField_widget extends StatelessWidget {
-  TextField_widget({
+class TextFieldWidget extends StatelessWidget {
+  TextFieldWidget({
     super.key,
     required this.onChanged,
   });

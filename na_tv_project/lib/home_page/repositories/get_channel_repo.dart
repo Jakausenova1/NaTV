@@ -19,4 +19,10 @@ class GetChannelRepo {
 
     return listChanels;
   }
+
+  Future<double> get_calc(int channelId, int daysCount, String text) async {
+    final response = await dio.get('api/v1/channel/calculate',
+        data: {"channelId": channelId, "daysCount": daysCount, "text": text});
+    return response.data["priceWithDiscount"];
+  }
 }

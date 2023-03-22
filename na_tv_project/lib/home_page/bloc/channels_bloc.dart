@@ -8,16 +8,53 @@ part 'channels_state.dart';
 
 class ChannelsBloc extends Bloc<ChannelsEvent, ChannelsState> {
   ChannelsBloc({required this.repo}) : super(ChannelsInitial()) {
-    on<GetChannelEvent>((event, emit) async {
-      emit(ChannelsLoading());
-      try {
-        final model = await repo.getChannel();
-        emit(ChannelsSucces(model: model));
-      } catch (e) {
-        emit(ChannelsError());
-        print('jjj*************************$e');
-      }
+    on<GetChannelEvent>(get_channels);
+    on<GetTextChanged>(text_changed);
+    on<SelectDate>(selected_date);
+  }
+
+  final GetChannelRepo repo;
+  String text = '';
+  double totalSumm = 0;
+  Map<int, List<DateTime>> selectedDates = {};
+  Map<int, double> prices = {};
+  List<ChannelModel> model = [];
+  get_channels(event, emit) async {
+    emit(ChannelsLoading());
+    try {
+      model = await repo.getChannel();
+      emit(ChannelsSucces(model: model));
+    } catch (e) {
+      emit(ChannelsError());
+      print('jjj*************************$e');
+    }
+  }
+
+  text_changed(event, emit) async {
+    text = event.text;
+    emit(TextChanging(count: text.length));
+  }
+
+  selected_date(event, emit) async {
+    selectedDates[event.channelId] = [event.dateOne, event.dateTwo];
+    final dayCount = event.dateOne.difference(event.dateTwo).inDays.abs();
+    try {
+      final double price = await repo.get_calc(event.channelId, dayCount, text);
+      prices[event.channelId] = price;
+      total_sum_calc();
+
+      emit(ChannelsSucces(model: model));
+    } catch (e) {
+      print(
+          "error######################################################### $e");
+    }
+  }
+
+  total_sum_calc() {
+    totalSumm = 0;
+
+    prices.forEach((key, value) {
+      totalSumm += value;
     });
   }
-  final GetChannelRepo repo;
 }

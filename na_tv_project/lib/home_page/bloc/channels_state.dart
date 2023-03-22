@@ -14,3 +14,9 @@ class ChannelsSucces extends ChannelsState {
 }
 
 class ChannelsError extends ChannelsState {}
+
+class TextChanging extends ChannelsState {
+  final int count;
+
+  TextChanging({required this.count});
+}

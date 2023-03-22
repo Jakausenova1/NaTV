@@ -18,11 +18,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String _text = '';
 
-  void _updateText(String newText) {
-    setState(() {
-      _text = newText;
-    });
-  }
+  // void _updateText(String newText) {
+  //   setState(() {
+  //     _text = newText;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -43,13 +43,23 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Text(
-              'Введите текст объявления\nСимволов: ${_text.length}',
-              style: AppFonts.w500s15.copyWith(color: Colors.black),
+            BlocBuilder<ChannelsBloc, ChannelsState>(
+              builder: (context, state) {
+                int count = 0;
+                if (state is TextChanging) {
+                  count = state.count;
+                }
+                return Text(
+                  'Введите текст объявления\nСимволов: $count',
+                  style: AppFonts.w500s15.copyWith(color: Colors.black),
+                );
+              },
             ),
-            TextField_widget(
+            TextFieldWidget(
               onChanged: (newText) {
-                _updateText(newText);
+                BlocProvider.of<ChannelsBloc>(context).add(
+                  GetTextChanged(newText),
+                );
               },
             ),
             const SizedBox(
@@ -65,18 +75,30 @@ class _HomePageState extends State<HomePage> {
             BlocBuilder<ChannelsBloc, ChannelsState>(
               builder: (context, state) {
                 if (state is ChannelsSucces) {
-                  return DataTable_widget(
+                  return DataTableWidget(
                     list: state.model,
 
                     // image: state.model[index].logo ?? '',
                     // titleOfChannel: state.model[index].channelName ?? '',
                     // price: state.model[index].pricePerLetter ?? 0,
                   );
-                } else {
-                  return Text('data');
                 }
+
+                if (BlocProvider.of<ChannelsBloc>(context).model.isNotEmpty) {
+                  return DataTableWidget(
+                    list: BlocProvider.of<ChannelsBloc>(context).model,
+                  );
+                }
+
+                return Text('data');
               },
             ),
+            BlocBuilder<ChannelsBloc, ChannelsState>(
+              builder: (context, state) {
+                return Text(
+                    'hhh ${BlocProvider.of<ChannelsBloc>(context).totalSumm}');
+              },
+            )
           ],
         ),
       ),

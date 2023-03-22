@@ -6,8 +6,8 @@ import 'package:na_tv_project/home_page/models/channel_model.dart';
 import '../assets/app_fonts.dart';
 import 'data_picker_range.dart';
 
-class DataTable_widget extends StatelessWidget {
-  const DataTable_widget({
+class DataTableWidget extends StatelessWidget {
+  const DataTableWidget({
     super.key,
     required this.list,
     // required this.image,
@@ -39,7 +39,7 @@ class DataTable_widget extends StatelessWidget {
           ),
           DataColumn(
             label: Text(
-              'Стоимость',
+              'цена',
               style: AppFonts.w500s15,
             ),
           ),
@@ -65,10 +65,14 @@ class DataTable_widget extends StatelessWidget {
                     ),
                   ),
                   DataCell(
-                    SizedBox(width: double.infinity, child: DateRangePicker()),
+                    SizedBox(
+                        width: double.infinity,
+                        child: DateRangePicker(id: e.id!)),
                   ),
                   DataCell(
-                    Text(e.pricePerLetter.toString()),
+                    Text(BlocProvider.of<ChannelsBloc>(context)
+                        .prices[e.id!]
+                        .toString()),
                   ),
                 ],
               ),
