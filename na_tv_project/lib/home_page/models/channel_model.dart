@@ -16,7 +16,7 @@ class ChannelModel {
     id = json['id'];
     channelName = json['channelName'];
     logo = json['logo'];
-    pricePerLetter = json['pricePerLetter'];
+    pricePerLetter = json['pricePerLetter'] ?? 0;
     if (json['discounts'] != null) {
       discounts = <Discounts>[];
       json['discounts'].forEach((v) {

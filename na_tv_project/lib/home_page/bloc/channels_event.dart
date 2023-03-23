@@ -17,3 +17,12 @@ class SelectDate extends ChannelsEvent {
 
   SelectDate(this.dateOne, this.dateTwo, this.channelId);
 }
+
+class ShowInfo extends ChannelsEvent {}
+
+class BannerPrice extends ChannelsEvent {
+  final DateTime dateOne, dateTwo;
+  final int channelId;
+
+  BannerPrice(this.dateOne, this.dateTwo, this.channelId);
+}

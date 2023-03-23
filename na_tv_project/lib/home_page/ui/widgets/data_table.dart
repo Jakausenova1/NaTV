@@ -10,16 +10,11 @@ class DataTableWidget extends StatelessWidget {
   const DataTableWidget({
     super.key,
     required this.list,
-    // required this.image,
-    // required this.titleOfChannel,
-    // required this.price,
+    this.isBanner = false,
   });
 
-  // final String image;
-  // final String titleOfChannel;
-  // final double price;
-
   final List<ChannelModel> list;
+  final bool isBanner;
 
   @override
   Widget build(BuildContext context) {
@@ -69,11 +64,8 @@ class DataTableWidget extends StatelessWidget {
                         width: double.infinity,
                         child: DateRangePicker(id: e.id!)),
                   ),
-                  DataCell(
-                    Text(BlocProvider.of<ChannelsBloc>(context)
-                        .prices[e.id!]
-                        .toString()),
-                  ),
+                  DataCell(Text(
+                      '${!isBanner ? BlocProvider.of<ChannelsBloc>(context).prices[e.id!] ?? 0 : BlocProvider.of<ChannelsBloc>(context).pricesForBanner[e.id!] ?? 0}')),
                 ],
               ),
             )

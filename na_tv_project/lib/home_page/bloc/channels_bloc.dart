@@ -11,13 +11,17 @@ class ChannelsBloc extends Bloc<ChannelsEvent, ChannelsState> {
     on<GetChannelEvent>(get_channels);
     on<GetTextChanged>(text_changed);
     on<SelectDate>(selected_date);
+    on<BannerPrice>(bannerPrice);
   }
 
   final GetChannelRepo repo;
   String text = '';
   double totalSumm = 0;
+  double totalSummForBanner = 0;
   Map<int, List<DateTime>> selectedDates = {};
-  Map<int, double> prices = {};
+  Map<int, List<DateTime>> selectedDatesBanners = {};
+  Map<int, double?> prices = {};
+  Map<int, double?> pricesForBanner = {};
   List<ChannelModel> model = [];
   get_channels(event, emit) async {
     emit(ChannelsLoading());
@@ -41,7 +45,7 @@ class ChannelsBloc extends Bloc<ChannelsEvent, ChannelsState> {
     try {
       final double price = await repo.get_calc(event.channelId, dayCount, text);
       prices[event.channelId] = price;
-      total_sum_calc();
+      totalSumCalc();
 
       emit(ChannelsSucces(model: model));
     } catch (e) {
@@ -50,11 +54,26 @@ class ChannelsBloc extends Bloc<ChannelsEvent, ChannelsState> {
     }
   }
 
-  total_sum_calc() {
+  totalSumCalc() {
     totalSumm = 0;
 
     prices.forEach((key, value) {
-      totalSumm += value;
+      totalSumm += value ?? 0;
+    });
+  }
+
+  bannerPrice(event, state) {
+    selectedDatesBanners[event.channelId] = [event.dateOne, event.dateTwo];
+    final dayCount = event.dateOne.difference(event.dateTwo).inDays.abs();
+    pricesForBanner[event.channelId] = dayCount * 600;
+    totalSummForBanner;
+  }
+
+  totalSumCalcBanner() {
+    totalSummForBanner = 0;
+
+    pricesForBanner.forEach((key, value) {
+      totalSummForBanner += value ?? 0;
     });
   }
 }
