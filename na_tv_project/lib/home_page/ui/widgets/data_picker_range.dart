@@ -6,8 +6,10 @@ import '../../bloc/channels_bloc.dart';
 
 class DateRangePicker extends StatefulWidget {
   final int id;
+  final bool isBanner;
 
-  const DateRangePicker({super.key, required this.id});
+  const DateRangePicker({super.key, required this.id, this.isBanner = false});
+
   @override
   _DateRangePickerState createState() => _DateRangePickerState();
 }
@@ -36,8 +38,9 @@ class _DateRangePickerState extends State<DateRangePicker> {
       _startDate = newDateRange.start;
       _endDate = newDateRange.end;
 
-      BlocProvider.of<ChannelsBloc>(context)
-          .add(SelectDate(_startDate!, _endDate!, widget.id));
+      BlocProvider.of<ChannelsBloc>(context).add(widget.isBanner
+          ? BannerPrice(_startDate!, _endDate!, widget.id)
+          : SelectDate(_startDate!, _endDate!, widget.id));
     });
   }
 

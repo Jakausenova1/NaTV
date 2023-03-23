@@ -21,12 +21,6 @@ class BannerPage extends StatefulWidget {
 class _BannerPageState extends State<BannerPage> {
   String _text = '';
 
-  // void _updateText(String newText) {
-  //   setState(() {
-  //     _text = newText;
-  //   });
-  // }
-
   XFile? imageSelected;
 
   @override
@@ -35,16 +29,19 @@ class _BannerPageState extends State<BannerPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Text('загрузите файл'),
+            Text(
+              'Загрузите файл',
+              style: AppFonts.w500s22,
+            ),
             ElevatedButton(
                 onPressed: () async {
                   final ImagePicker _picker = ImagePicker();
-                  // Pick an image
+
                   imageSelected =
                       await _picker.pickImage(source: ImageSource.gallery);
                   setState(() {});
                 },
-                child: Text('d')),
+                child: Text('+')),
             imageSelected != null
                 ? Image.file(
                     File(imageSelected!.path),
@@ -66,6 +63,7 @@ class _BannerPageState extends State<BannerPage> {
               builder: (context, state) {
                 if (state is ChannelsSucces) {
                   return DataTableWidget(
+                    isBanner: true,
                     list: state.model,
                   );
                 }

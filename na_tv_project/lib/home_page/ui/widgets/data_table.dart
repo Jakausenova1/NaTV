@@ -34,7 +34,7 @@ class DataTableWidget extends StatelessWidget {
           ),
           DataColumn(
             label: Text(
-              'цена',
+              'Цена',
               style: AppFonts.w500s15,
             ),
           ),
@@ -62,7 +62,10 @@ class DataTableWidget extends StatelessWidget {
                   DataCell(
                     SizedBox(
                         width: double.infinity,
-                        child: DateRangePicker(id: e.id!)),
+                        child: DateRangePicker(
+                          id: e.id!,
+                          isBanner: isBanner,
+                        )),
                   ),
                   DataCell(Text(
                       '${!isBanner ? BlocProvider.of<ChannelsBloc>(context).prices[e.id!] ?? 0 : BlocProvider.of<ChannelsBloc>(context).pricesForBanner[e.id!] ?? 0}')),

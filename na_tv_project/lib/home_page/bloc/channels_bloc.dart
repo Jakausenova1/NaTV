@@ -62,11 +62,13 @@ class ChannelsBloc extends Bloc<ChannelsEvent, ChannelsState> {
     });
   }
 
-  bannerPrice(event, state) {
+  bannerPrice(event, emit) {
     selectedDatesBanners[event.channelId] = [event.dateOne, event.dateTwo];
     final dayCount = event.dateOne.difference(event.dateTwo).inDays.abs();
     pricesForBanner[event.channelId] = dayCount * 600;
     totalSummForBanner;
+
+    emit(ChannelsSucces(model: model));
   }
 
   totalSumCalcBanner() {
