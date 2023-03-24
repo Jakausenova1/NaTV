@@ -20,6 +20,10 @@ class SelectDate extends ChannelsEvent {
 
 class ShowInfo extends ChannelsEvent {}
 
+class CreateOrder extends ChannelsEvent {}
+
+class CreateOrderBanner extends ChannelsEvent {}
+
 class BannerPrice extends ChannelsEvent {
   final DateTime dateOne, dateTwo;
   final int channelId;

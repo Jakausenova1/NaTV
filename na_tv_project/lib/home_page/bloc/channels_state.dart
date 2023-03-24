@@ -7,6 +7,14 @@ class ChannelsInitial extends ChannelsState {}
 
 class ChannelsLoading extends ChannelsState {}
 
+class CreateOrderSucces extends ChannelsState {}
+
+class CreateOrderError extends ChannelsState {}
+
+class CreateOrderSuccesBanner extends ChannelsState {}
+
+class CreateOrderErrorBanner extends ChannelsState {}
+
 class ChannelsSucces extends ChannelsState {
   final List<ChannelModel> model;
 

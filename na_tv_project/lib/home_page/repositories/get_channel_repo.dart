@@ -26,4 +26,14 @@ class GetChannelRepo {
 
     return response.data["priceWithDiscount"];
   }
+
+  Future<bool> createOrder(Map<String, dynamic> data) async {
+    final response = await dio.post('api/v1/order/save', data: data);
+    return response.statusCode == 200;
+  }
+
+  Future<bool> createOrderBanner(Map<String, dynamic> data) async {
+    final response = await dio.post('api/v1/order/save-banner', data: data);
+    return response.statusCode == 200;
+  }
 }

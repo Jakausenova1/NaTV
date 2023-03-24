@@ -90,13 +90,25 @@ class _TextPageState extends State<TextPage> {
             const SizedBox(
               height: 10,
             ),
-            ElevatedButton(
-                onPressed: () {
+            BlocConsumer<ChannelsBloc, ChannelsState>(
+              listener: (context, state) {
+                if (state is CreateOrderSucces) {
                   _showMyDialog(BlocProvider.of<ChannelsBloc>(context)
-                      .totalSumm
+                      .totalSummForBanner
                       .toString());
-                },
-                child: Text('разместить об-е'))
+                } else if (state is CreateOrderError) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text('error')));
+                }
+              },
+              builder: (context, state) {
+                return ElevatedButton(
+                    onPressed: () {
+                      BlocProvider.of<ChannelsBloc>(context).add(CreateOrder());
+                    },
+                    child: Text('разместить об-е'));
+              },
+            )
           ],
         ),
       ),

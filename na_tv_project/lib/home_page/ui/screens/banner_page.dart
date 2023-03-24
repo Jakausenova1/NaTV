@@ -90,13 +90,26 @@ class _BannerPageState extends State<BannerPage> {
             const SizedBox(
               height: 10,
             ),
-            ElevatedButton(
-                onPressed: () {
+            BlocConsumer<ChannelsBloc, ChannelsState>(
+              listener: (context, state) {
+                if (state is CreateOrderSuccesBanner) {
                   _showMyDialog(BlocProvider.of<ChannelsBloc>(context)
                       .totalSummForBanner
                       .toString());
-                },
-                child: Text('разместить об-е'))
+                } else if (state is CreateOrderErrorBanner) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text('error')));
+                }
+              },
+              builder: (context, state) {
+                return ElevatedButton(
+                    onPressed: () {
+                      BlocProvider.of<ChannelsBloc>(context)
+                          .add(CreateOrderBanner());
+                    },
+                    child: Text('разместить об-е'));
+              },
+            )
           ],
         ),
       ),
